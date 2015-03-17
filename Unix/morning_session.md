@@ -30,12 +30,7 @@ Address: Genome Center, UC Davis, Davis, CA, 95616
 
 # Contents
 
-1. [Introduction](#Introduction)
-+ [Preamble]
-+ [First steps]
-+ [Part 1] --- Unix - Learning the essentials
-+ [Part 2] --- Advanced Unix 
-	
+[TOC]	
 
 ---
 
