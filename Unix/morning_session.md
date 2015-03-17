@@ -40,7 +40,7 @@ Address: Genome Center, UC Davis, Davis, CA, 95616
 ---
 
 
-# Introduction 
+#Introduction 
 
 Advances in high-throughput biology have transformed modern biology into an incredibly data-rich science. Biologists who never thought they needed computer programming skills are now finding that using an Excel spreadsheet is simply not enough. Learning to program a computer can be a daunting task, but it is also incredibly worthwhile. You will not only improve your research, you will also open your mind to new ways of thinking and have a lot of fun.
 
