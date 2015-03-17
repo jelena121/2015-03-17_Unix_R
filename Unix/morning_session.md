@@ -219,13 +219,13 @@ are in the wrong directory, so it's a really good habit to get used to running t
 We are in the home directory on the computer but we want to to work on the USB drive. To change directories in Unix, we
 use the [cd][] command:
 
-	olson27-1:~ kbradnam$ cd /Volumes/USB/Unix_and_Perl_course 
+	olson27-1:~ kbradnam$ cd Course_Materials 
 	olson27-1:USB kbradnam$ ls
 	Applications	Code		Data		Documentation 
 	olson27-1:USB kbradnam$ pwd 
-	/Volumes/USB/Unix_and_Perl_course
+	/Course_Materials
 
-The first command reads as "change directory to the Unix_and_Perl_course directory that is inside a directory called 'USB', which itself is inside the Volumes directory that is at the root level of the computer". Did you notice that the command prompt changed after you ran the `cd` command?  The '~' sign should have changed to 'Unix_and_Perl_course'. This is a useful feature of the command prompt. By default it reminds you where you are as you move through different directories on the computer.
+The first command reads as "change directory to the Course_Materials directory that is inside the current directory. Did you notice that the command prompt changed after you ran the `cd` command?  The '~' sign should have changed to 'Course_Materials'. This is a useful feature of the command prompt. By default it reminds you where you are as you move through different directories on the computer.
 
 >***NB. For the sake of clarity, we will now simplify the command prompt in all of the following examples***
 
@@ -235,18 +235,11 @@ The first command reads as "change directory to the Unix_and_Perl_course directo
 
 ## U6: Root is the root of all evil [U6]
 
-In the previous example, we could have achieved the same result in three separate steps:
+In the previous example, we could have achieved the same result like this:
 
-	$ cd /Volumes 
-	$ cd USB 
-	$ cd Unix_and_Perl_course
+	$ cd /Course_Materials 
 
-Note that the second and third commands do not include a forward slash. When you specify a directory that starts with a forward slash, you are referring to a directory that should exist one level below the root level of the computer. What happens if you try the following two commands? The first command should produce an error message.
-
-	$ cd Volumes 
-	$ cd /Volumes
-
-The error is because without including a leading slash, Unix is trying to change to a 'Volumes' directory below your current level in the file hierarchy (/Volumes/USB/Unix_and_Perl_course), and there is no directory called Volumes at this location.
+When you specify a directory that starts with a forward slash, you are referring to a directory that should exist one level below the root level of the computer. 
 
 ---
 
