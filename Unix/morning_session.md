@@ -176,12 +176,9 @@ There are four things that you should note here:
 3. The output of the `ls` command lists five things. In this case, they are all directories, but they could also be files. We'll learn how to tell them apart later on. 
 4. After the `ls` command finishes it produces a new command prompt, ready for you to type your next command.
 
-The `ls` command is used to list the contents of _any_ directory, not necessarily the one that you are currently in. Plug in your USB drive, and type the following:
+The `ls` command is used to list the contents of _any_ directory, not necessarily the one that you are currently in. For example, you can type the following:
 
-	olson27-1:~ kbradnam$ ls /Volumes/USB/Unix_and_Perl_course 
-	Applications	Code		Data		Documentation
-
-On a Mac, plugged in drives appear as subdirectories in the special 'Volumes' directory. The name of the USB flash drive is 'USB'. The above output shows a set of four directories that are all "inside" the 'Unix_and_Perl_course' directory). Note how the underscore character '_' is used to space out words in the directory name. 
+	olson27-1:~ kbradnam$ ls /Course_Material
 
 [ls]: http://en.wikipedia.org/wiki/Ls
 [command prompt]: http://en.wikipedia.org/wiki/Command_line_interface
