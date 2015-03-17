@@ -178,7 +178,7 @@ There are four things that you should note here:
 
 The `ls` command is used to list the contents of _any_ directory, not necessarily the one that you are currently in. For example, you can type the following:
 
-	olson27-1:~ kbradnam$ ls /Course_Material
+	olson27-1:~ kbradnam$ ls /Course_Materials
 
 [ls]: http://en.wikipedia.org/wiki/Ls
 [command prompt]: http://en.wikipedia.org/wiki/Command_line_interface
