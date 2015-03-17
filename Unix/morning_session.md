@@ -247,18 +247,18 @@ When you specify a directory that starts with a forward slash, you are referring
 
 Frequently, you will find that you want to go 'upwards' one level in the directory hierarchy. Two dots `..` are used in Unix to refer to the _parent_ directory of wherever you are. Every directory has a parent except the root level of the computer:
 
-	$ cd /Volumes/USB/Unix_and_Perl_course 
+	$ cd /Course_Materials 
 	$ pwd 
-	/Volumes/USB/Unix_and_Perl_course 
+	/Course_Materials 
 	$ cd .. 
 	$ pwd 
 	/Volumes/USB
 
 What if you wanted to navigate up _two_ levels in the file system in one go? It's very simple, just use two sets of the `..` operator, separated by a forward slash:
 
-	$ cd /Volumes/USB/Unix_and_Perl_course 
+	$ cd /Course_Materials 
 	$ pwd 
-	/Volumes/USB/Unix_and_Perl_course 
+	/Course_Materials 
 	$ cd ../.. 
 	$ pwd 
 	/Volumes 
@@ -267,13 +267,13 @@ What if you wanted to navigate up _two_ levels in the file system in one go? It'
 	
 ## U8: I'm absolutely sure that this is all relative [U8]
 
-Using `cd ..` allows us to change directory _relative_ to where we are now. You can also always change to a directory based on its _absolute_ location. E.g. if you are working in the `/Volumes/USB/Unix_and_Perl_course/Code` directory and you then want to change to the `/Volumes/USB/Unix_and_Perl_course/Data` directory, then you could do either of the following:
+Using `cd ..` allows us to change directory _relative_ to where we are now. You can also always change to a directory based on its _absolute_ location. E.g. if you are working in the `/Course_Materials/Code` directory and you then want to change to the `/Course_Materials/Data` directory, then you could do either of the following:
 
 	$ cd ../Data
 
 or...
 
-	$ cd /Volumes/USB/Unix_and_Perl_course/Data
+	$ cd /Course_Materials/Data
 
 They both achieve the same thing, but the 2nd example requires that you know about the full _path_ from the root level of the computer to your directory of interest (the 'path' is an important concept in Unix). Sometimes it is quicker to change directories using the relative path, and other times it will be quicker to use the absolute path.
 
@@ -301,7 +301,7 @@ Hopefully, you should find that `cd` and `cd ~` do the same thing, i.e. they tak
 
 The `..` operator that we saw earlier can also be used with the `ls` command. Can you see how the following command is listing the contents of the root directory? If you want to test this, try running `ls /` and see if the output is any different.
 
-	$ cd /Volumes/USB/Unix_and_Perl_course 
+	$ cd /Course_Materials 
 	$ ls ../../.. 
 	Applications	Volumes		net
 	CRC				bin			oldlogins 
@@ -314,7 +314,7 @@ The `..` operator that we saw earlier can also be used with the `ls` command. Ca
 
 The `ls` command (like most Unix commands) has a set of options that can be added to the command to change the results. Command-line options in Unix are specified by using a dash ('-') after the command name followed by various letters, numbers, or words. If you add the letter 'l' to the `ls` command it will give you a 'longer' output compared to the default:
 
-	$ ls -l /Volumes/USB/Unix_and_Perl_course 
+	$ ls -l /Course_Materials 
 	total 192 
 	drwxrwxrwx  1 keith  staff  16384 Oct  3 09:03 Applications
 	drwxrwxrwx  1 keith  staff  16384 Oct  3 11:11 Code 
@@ -355,7 +355,7 @@ Some Unix commands have very long manual pages, which might seem very confusing.
 If we want to make a new directory (e.g. to store some work related data), we can use the 
 [mkdir][] command:
 
-	$ cd /Volumes/USB/Unix_and_Perl_course 
+	$ cd /Course_Materials 
 	$ mkdir Work
 	$ ls
 	Applications	Code		Data		Documentation	Work 
@@ -364,7 +364,7 @@ If we want to make a new directory (e.g. to store some work related data), we ca
 	$ mkdir Temp2 
 	$ cd Temp2 
 	$ pwd 
-	/Volumes/USB/Unix_and_Perl_course/Temp1/Temp2
+	/Course_Materials/Temp1/Temp2
 
 In the last example we created the two temp directories in two separate steps. If we had used the `-p` option of the `mkdir` command we could have done this in one step. E.g.
 
@@ -382,7 +382,7 @@ directories using both the _absolute_ as well as the _relative_ path (see sectio
 
 We now have a few (empty) directories that we should remove. To do this use the [rmdir][] command, this will only remove empty directories so it is quite safe to use. If you want to know more about this command (or any Unix command), then remember that you can just look at its man page.
 
-	$ cd /Volumes/USB/Unix_and_Perl_course 
+	$ cd /Course_Materials 
 	$ rmdir Work
 
 #### Task U13.1 [U13.1]
@@ -405,7 +405,7 @@ pressing tab _twice_ will show you all possible completions. This trick can save
 tab-completion then you must be a masochist.
 
 #### Task U14.1 [U14.1]
-Navigate to your home directory, and then use the `cd` command to change to the `/Volumes/USB/Unix_and_Perl_course/Code/` directory. Use tab completion for each directory name. This should only take 13 key strokes compared to 41 if you type the whole thing yourself.
+Navigate to your home directory, and then use the `cd` command to change to the `/Course_Materials/Code/` directory. Use tab completion for each directory name. This should only take 13 key strokes compared to 41 if you type the whole thing yourself.
 
 Another great time-saver is that Unix stores a list of all the commands that you have typed in each login session. You can access this list by using the [history][] command or more simply by using the up and down arrows to access anything from your history. So if you type a long command but make a mistake, press the up arrow and then you can use the left and right arrows to move the cursor in order to make a change.
 
@@ -418,7 +418,7 @@ Another great time-saver is that Unix stores a list of all the commands that you
 
 The following sections will deal with Unix commands that help us to work with files, i.e. copy files to/from places, move files, rename files, remove files, and most importantly, look at files. Remember, we want to be able to do all of these things without leaving the terminal. First, we need to have some files to play with. The Unix command [touch][] will let us create a new, empty file. The touch command does other things too, but for now we just want a couple of files to work with.
 
-	$ cd /Volumes/USB/Unix_and_Perl_course 
+	$ cd /Course_Materials 
 	$ touch heaven.txt 
 	$ touch earth.txt 
 	$ ls 
@@ -495,13 +495,13 @@ It is important to understand that as long as you have specified a 'source' and 
 This step moves the Temp2 directory inside the Temp directory.
 
 #### Task U18.1 [U18.1]
-Create another Temp directory (Temp3) and then change directory to your home directory (/users/clmuser). **Without** changing directory, move the Temp3 directory to inside the /Volumes/USB/Unix_and_Perl_course/Temp directory.
+Create another Temp directory (Temp3) and then change directory to your home directory (/users/clmuser). **Without** changing directory, move the Temp3 directory to inside the /Course_Materials/Temp directory.
 
 ---
 
 ## U19: Here, there, and everywhere [U19]
 
-The philosophy of 'not having to be in a directory to do something in that directory', extends to just about any operation that you might want to do in Unix. Just because we need to do something with file X, it doesn't necessarily mean that we have to change directory to wherever file X is located. Let's assume that we just want to quickly check what is in the Data directory before continuing work with whatever we were previously doing in /Volumes/USB/Unix_and_Perl_course. Which of the following looks more convenient:
+The philosophy of 'not having to be in a directory to do something in that directory', extends to just about any operation that you might want to do in Unix. Just because we need to do something with file X, it doesn't necessarily mean that we have to change directory to wherever file X is located. Let's assume that we just want to quickly check what is in the Data directory before continuing work with whatever we were previously doing in /Course_Materials. Which of the following looks more convenient:
 
 	$ cd Data 
 	$ ls 
@@ -536,7 +536,7 @@ I.e. imagine if you had to type the following (to access a buried directory 'ggg
 	
 ## U21: The most dangerous Unix command you will ever learn! [U21]
 
-You've seen how to remove a directory with the `rmdir` command, but `rmdir` won't remove directories if they contain any files. So how can we remove the files we have created (in /Volumes/USB/Unix_and_Perl_course/Temp)? In order to do this, we will have to use the [rm][] (remove) command.
+You've seen how to remove a directory with the `rmdir` command, but `rmdir` won't remove directories if they contain any files. So how can we remove the files we have created (in /Course_Materials/Temp)? In order to do this, we will have to use the [rm][] (remove) command.
 
 >***Please read the next section VERY carefully. Misuse of the rm command can lead to needless death & destruction*** 
 
@@ -545,7 +545,7 @@ Potentially, `rm` is a very dangerous command; if you delete something with `rm`
 Let me repeat that last part again. It is possible to delete EVERY file you have ever created with the `rm` command. Are you scared yet? You should be. Luckily there is a way of making `rm` a little bit safer. We can use it with the `-i` command-line option which will ask for confirmation before deleting anything:
 
 	$ pwd 
-	/Volumes/USB/Unix_and_Perl_course/Temp 
+	/Course_Materials/Temp 
 	$ ls 
 	Temp2		Temp3		earth.txt	heaven.txt	rags 
 	$ rm -i earth.txt 
@@ -675,7 +675,7 @@ Create an alias such that typing `rm` will always invoke `rm -i`. Try running th
 
 The problem with aliases is that they only exist in the current terminal session. Once you log out, or use a new terminal window, then you'll have to retype the alias. Fortunately though, there is a way of storing settings like these. To do this, we need to be able to create a configuration file and this requires using a text editor. We could use a program like TextEdit to do this (or even Microsoft Word), but as this is a Unix course,  we will use a simple Unix editor called [`][]. Let's create a file called profile:
 
-	$ cd /Volumes/USB/Unix_and_Perl_course 
+	$ cd /Course_Materials 
 	$ nano profile
 
 You should see the following appear in your terminal:
@@ -707,7 +707,7 @@ Now try the `ls` command to see if the output looks different. Next, use `touch`
 
 ## U28: Hidden treasure [U28]
 
-In addition to adding aliases, profile files in Unix are very useful for many other reasons. We have actually already created a profile for you. It's in /Volumes/USB/Unix_and_Perl_course but you probably won't have seen it yet. That's because it is a hidden file named '.profile' (dot profile). If a filename starts with a dot, Unix will treat it as a hidden file. To see it, you  can use `ls -a` which lists all hidden files (there may be several more files that appear).
+In addition to adding aliases, profile files in Unix are very useful for many other reasons. We have actually already created a profile for you. It's in /Course_Materials but you probably won't have seen it yet. That's because it is a hidden file named '.profile' (dot profile). If a filename starts with a dot, Unix will treat it as a hidden file. To see it, you  can use `ls -a` which lists all hidden files (there may be several more files that appear).
 
 #### Task U28.1 [U28.1]
 Use `less` to look at the profile file that we have created. See if you can understand what all the lines mean (any lines that start with a # are just comments). Use `source` to read this file. See how this changes the behavior of typing `cd` on its own. You can now delete the profile file that you made earlier, from now on we will use the .profile file.
@@ -715,7 +715,7 @@ Use `less` to look at the profile file that we have created. See if you can unde
 If you have a .profile file in your _home_ directory then it will be automatically read every time you open a new terminal. A problem for this class is your home directories are wiped each day, so we can't store files on the computer (which is why we are using the USB drive). So for this course we have to do a bit of extra work.
 
 >***Remember to type:***  
-***source /Volumes/USB/Unix_and_Perl_course/.profile***  
+***source /Course_Materials/.profile***  
 ***every time you use a new terminal window***
 
 ---
@@ -727,7 +727,7 @@ Unix can also be used as a programming language just like Perl. Depending on wha
 So how do you make a Unix script (which are commonly called 'shell scripts')? At the simplest level, we just write one or more  Unix commands to a file and then treat that file as if it was any other Unix command or program.
 
 #### Task U29.1 [U29.1]
-Copy the following two lines to a file (using `nano`). Name that file hello.sh (shell scripts are typically given a .sh extension) and **make sure that you save this file in /Volumes/USB/Unix_and_Perl_course/Code**.
+Copy the following two lines to a file (using `nano`). Name that file hello.sh (shell scripts are typically given a .sh extension) and **make sure that you save this file in /Course_Materials/Code**.
 
 	# my first Unix shell script 
 	echo "Hello World"
