@@ -9,10 +9,10 @@ Address: Genome Center, UC Davis, Davis, CA, 95616
 
 
 
-# Unix and Perl Primer for Biologists 
+# The Unix Primer for Biologists 
 
-## Keith Bradnam & Ian Korf 
-## Version 3.1.1 --- October 2012
+## Keith Bradnam & Ian Korf
+## Version 4 --- March 2015
 
 
 
@@ -30,52 +30,12 @@ Address: Genome Center, UC Davis, Davis, CA, 95616
 
 # Contents
 
-+ [Shameless plug]
 + [Introduction]
 + [Preamble]
 + [First steps]
 + [Part 1] --- Unix - Learning the essentials
 + [Part 2] --- Advanced Unix 
-+ [Part 3] --- Perl
-	+ [Project 0] --- Poisson
-	+ [Project 1] --- DNA composition
-	+ [Project 2] --- Descriptive statistics
-	+ [Project 3] --- Sequence shuffler
-	+ [Project 4] --- The name game
-	+ [Project 5] --- K-mer analysis
-	+ [Project 6] --- Codon usage of a GenBank file
-	+ [Project 7] --- Useful functions
-+ [Troubleshooting] --- Troubleshooting guide
-+ [Common errors] --- Table of common error messages
-+ [Version history] --- Version history of this document
-
-
 	
----
-
-
-# Shameless Plug [Shameless plug]
-
-This course has been greatly extended and reworked into a book that has been published by Cambridge University Press. 
-It is available to order on [Amazon.com][Amazon] and at many other [online stores][online_stores]. It is also
-available in various [ebook formats][Ebook].
-
-[Amazon]: http://www.amazon.com/gp/product/0521169828
-[online_stores]: http://unixandperl.com/the-book/#wheretobuy
-[Ebook]: http://unixandperl.com/blog/2012/7/24/ebook-versions-of-unix-and-perl-to-the-rescue-are-coming-soo.html
-
-**Unix and Perl to the Rescue! A field guide for the life sciences (and other data-rich pursuits)**
-
-![Unix and Perl to the Rescue!](http://korflab.ucdavis.edu/Unix_and_Perl/book_cover.png)
-
-This primer will remain freely available, though we of course hope that if you find the primer useful, you will consider taking a look at our book. In the book we greatly expand on every subject that is in the primer, as well as covering many more topics. Some of these extra topics include more coverage of Unix and Perl, but we also devote sections to areas such as 'Data Management', 'Revision Control', and 'Code Beautification'. There are also many more jokes and geeky cultural references.
-
-We have also created a website at <http://unixandperl.com/> to support both the primer and the book, and should there ever be a movie adaptation of the book (starring Tom Cruise as 'grep'?) I expect that you'll be able to find out about that on the website as well.
-
-Enjoy!
-
-Keith Bradnam & Ian Korf May 2012
-
 
 ---
 
@@ -100,13 +60,11 @@ The [Unix operating system][Unix] has been around since 1969. Back then there wa
 Increasingly, the raw output of biological research exists as _in silico_ data, usually in the form of large text files. Unix is particularly suited to working with such files and has  several powerful (and flexible) commands that can process your data for you. The real strength of learning Unix is that most of these commands can be combined in an almost unlimited fashion. So if you can learn just five Unix commands, you will be able to do a lot more than just five things.
 
 
-## Why Perl? [Why Perl]
 
-Perl is one of the most popular Unix programming languages. It doesn't matter much which language you learn first because once you know how one works, it is much easier to learn others. Among languages, there is often a distinction between interpreted (e.g. Perl, Python, Ruby) and compiled (e.g. C, C++, Java) languages. People often call interpreted programs scripts. It is generally easier to learn programming in a scripting language because you don't have to worry as much about variable types and memory allocation. The downside is the interpreted programs often run much slower than compiled ones (100-fold is common). But let's not get lost in petty details. Scripts are programs, scripting is programming, and computers can solve problems quickly regardless of the language.
 
 ## Typeset Conventions [Typeset]
 
-All of the Unix and Perl code in these guides is written in constant-width font with line numbering. Here is an example with 3 lines:
+All of the Unix code in these guides is written in constant-width font with line numbering. Here is an example with 3 lines:
 
 	1. for ($i = 0; $i < 10; $i++) { 
 	2.     print $i, "\n"; 
@@ -119,26 +77,15 @@ example:
 	ls -lrh
 
 
-Sometimes a paragraph will include a reference to a Unix command, Perl function, or a file that you should be working with, Any such text will be in a constant-width, boxed font. E.g.
+Sometimes a paragraph will include a reference to a Unix command or a file that you should be working with, Any such text will be in a constant-width, boxed font. E.g.
 
 Type the `pwd` command again.
 
-From time to time this documentation will contain [web links][] to pages that will help you find out more about certain Unix commands and Perl functions. Usually, the _first_ mention of a command or function will be a hyperlink to Wikipedia (for Unix commands) or to <http://perldoc.perl.org> (for Perl functions). Important or critical points will be styled like so:
+From time to time this documentation will contain [web links][] to pages that will help you find out more about certain Unix commands. Usually, the _first_ mention of a command or function will be a hyperlink to Wikipedia for Unix commands. Important or critical points will be styled like so:
 
 >***This is an important point!***
 
 [web links]: http://en.wikipedia.org/wiki/Hyperlink
-
-
-## About the authors
-
-Keith Bradnam started out his academic career studying ecology. This involved lots of field trips and and throwing [quadrats][] around on windy hillsides. He was then lucky to be in the right place at the right time to do a Masters degree in Bioinformatics (at a time when nobody was very sure what bioinformatics was). From that point onwards he has spent most of his waking life sat a keyboard (often staring into a Unix terminal). A PhD studying eukaryotic genome evolution followed; this was made easier by the fact that only one genome had been completed at the time he started (this soon changed). After a brief stint working on an Arabidopsis genome database, he moved to working on the excellent model organism database [WormBase][] at the Wellcome Trust Sanger Institute. It was here that he first met Ian Korf and they bonded over a shared love of Macs, neatly written code, and English puddings. Ian then tried to run away and hide in California at the UC Davis [Genome Center][] but Keith tracked him down and joined his lab. Apart from doing research, he also gets to look after all the computers in the lab and teach the occasional class or two.  However, he would give it all up for the chance to be able to consistently beat Ian at foosball, but that seems unlikely to happen anytime soon. Keith still likes Macs and neatly written code, but now has a much harder job finding English puddings.
-
-[quadrats]: http://en.wikipedia.org/wiki/quadrat
-[WormBase]: http://www.wormbase.org
-[Genome Center]: http://www.genomecenter.ucdavis.edu
-
-Ian Korf believes that you can tell what a person will do with their life by examining their passions as a teen. Although he had no idea what a 'sequence analysis algorithm' was at 16, a deep curiosity about biological mechanisms and an obsession with writing/playing computer games is only a few bits away. Ian's first experience with bioinformatics came as a post-doc at Washington University (St. Louis) where he was a member of the Human Genome Project. He then went across the pond to the Sanger Centre for another post-doc. There he met Keith Bradnam, and found someone who truly understood the role of communication and presentation in science. Ian was somehow able to persuade Keith to join his new lab in Davis California, and this primer on Unix and Perl is but one of their hopefully useful contributions.
 
 
 ---
@@ -146,32 +93,20 @@ Ian Korf believes that you can tell what a person will do with their life by exa
 
 # Preamble [Preamble]
 
-## What computers can run Perl?
-
-One of the main goals of this course is to learn Perl. As a programming language, Perl is platform agnostic. You can write (and run) Perl scripts on just about any computer. We will assume that >99% of the people who are reading this use either a Microsoft Windows PC, an Apple Mac, or one of the many Linux distributions that are available (Linux can be considered as a type of Unix, though this claim might offend the Linux purists reading this). A small proportion of you may be using some other type of dedicated Unix platform, such as Sun or SGI.  For the Perl examples, none of this matters. All of the Perl scripts in this course should work on any machine that you can install Perl on (if an example doesnâ€™t work then please let us know!).
-
-
 ## What computers can run Unix?
 
-Unlike our Perl documentation, the Unix part of this course is not quite so portable to other types of computer. We decided that this course should include an introduction to Unix because most bioinformatics happens on Unix/Linux platforms; so it makes sense to learn how to run your Perl scripts in the context of a Unix operating system. If you read the Introduction, then you will know that all modern Mac computers are in fact Unix machines. This makes teaching Perl & Unix on a Mac a relatively straightforward proposition, though we are aware that this does not help those of you who use Windows. This is something that we will try to specifically address in later updates to this course. For now, we would like to point out that you can achieve a Unix-like environment on your Windows PC in one of two ways:
+Unlike our Perl documentation, the Unix part of this course is not quite so portable to other types of computer. We decided that this course should include an introduction to Unix because most bioinformatics happens on Unix/Linux platforms; so it makes sense to learn how to run your Perl scripts in the context of a Unix operating system. If you read the Introduction, then you will know that all modern Mac computers are in fact Unix machines. This makes teaching Unix on a Mac a relatively straightforward proposition, though we are aware that this does not help those of you who use Windows. This is something that we will try to specifically address in later updates to this course. For now, we would like to point out that you can achieve a Unix-like environment on your Windows PC in one of two ways:
 
 1. Install [Cygwin][] --- this provides a Linux-like environment on your PC, it is also free to download. There are some differences between Cygwin and other types of Unix which may mean that not every Unix example in this course works exactly as described, but overall it should be sufficient for you to learn the basics of Unix. 
-2. Install Linux by using [virtualization][] software --- there are many pieces of software that will now allow you effectively install one operating system within another operating system. Microsoft has itâ€™s own (free) [Virtual PC][] software, and here are some [instructions for installing Linux][Linux on windows] using Virtual PC.
+2. Install Linux by using [virtualization][] software --- there are many pieces of software that will now allow you effectively install one operating system within another operating system. Microsoft has it's own (free) [Virtual PC][] software, and here are some [instructions for installing Linux][Linux on windows] using Virtual PC.
 
 [Cygwin]: http://www.cygwin.com
 [virtualization]: http://en.wikipedia.org/wiki/Platform_virtualization
 [Virtual PC]: http://www.microsoft.com/windows/virtual-pc/default.aspx
 [Linux on windows]: http://www.pcreview.co.uk/articles/Windows/Run_Linux_in_Windows/
 
-You should also be aware that there is a lot of variation within the world of Unix/Linux. Most commands will be the same, but the layout of the file system may look a little different. Hopefully our documentation should work for most types of Unix, but bear in mind it was written (and tested) with Appleâ€™s version of Unix.
-
-## Do I need to run this course from a USB drive?
-
-We originally developed this course to be taught in a computer classroom environment. Because of this we decided to put the entire course (documentation & data) on to a USB flash drive. One reason for doing this was so that people could take the flash drive home with them and continue working on their own computers.
-
-If you have your own computer which is capable of running a Unix/Linux environment then you might prefer to use that, rather than using a flash drive. If you have downloaded the course material, then after unpacking it you should have a directory called 'Unix_and_Perl_course'. You can either copy this directory (about 100 MB in size at the time of writing) to a flash drive or to any other directory within your Unix environment. Instructions in this document will assume that you are working on a flash drive on a Mac computer, so many of the Unix examples will not work exactly as written on other systems. In most cases you will just need to change the name of any directories the are used in the examples.
-
-In our examples, we assume that the course material is located on a flash drive that is named â€˜USBâ€™. If you run the course from your own flash-drive, you might find it easier to rename it to 'USB' as well, though you donâ€™t have to do this.
+You should also be aware that there is a lot of variation within the world of Unix/Linux. Most commands will be the same, but the layout of the file system may look a little different. Hopefully our documentation should work for most types of Unix, but bear in mind it was written (and tested) with Apple's version of Unix.
+.
 
 ---
 
@@ -191,17 +126,17 @@ You are probably used to working with programs like the Apple Finder or the Wind
 The lessons from this point onwards will assume the following:
 
 1. You have downloaded the [Unix and Perl course material](http://korflab.ucdavis.edu/Unix_and_Perl/index.html) and copied it to a USB flash drive .
-2. The flash drive has been renamed to â€˜USBâ€™. 
+2. The flash drive has been renamed to 'USB'. 
 3. You have removed the downloaded files from your Desktop/Downloads folder (this is often the source of confusion when you have one copy on your USB drive and a separate copy on your Desktop) . 
 
 ---
 
 ## U1. The Terminal [U1]
 
-A â€˜terminalâ€™ is the common name for the program that does two main things. It allows you to type input to the computer (i.e. run programs, move/view files etc.) and it allows you to see output from those programs. All Unix machines will have a terminal program and on Apple computers, the terminal application is unsurprisingly named â€˜Terminalâ€™.
+A 'terminal' is the common name for the program that does two main things. It allows you to type input to the computer (i.e. run programs, move/view files etc.) and it allows you to see output from those programs. All Unix machines will have a terminal program and on Apple computers, the terminal application is unsurprisingly named 'Terminal'.
 
 #### Task U1.1 [U1.1]
-Use the â€˜Spotlightâ€™ search tool (the little magnifying glass in the top right of the menu bar) to find, and then launch, Appleâ€™s Terminal application: 
+Use the 'Spotlight' search tool (the little magnifying glass in the top right of the menu bar) to find, and then launch, Apple's Terminal application: 
 
 ![Spotlight][]
 
@@ -212,10 +147,10 @@ You should now see something that looks like the following (any text that appear
 
 Before we go any further, you should note that you can:
 
-* make the text larger/smaller (hold down â€˜commandâ€™ and either â€˜+â€™ or â€˜â€“â€™) 
+* make the text larger/smaller (hold down 'command' and either '+' or 'â€“') 
 * resize the window (this will often be necessary) 
-* have multiple terminal windows on screen (see the â€˜Shellâ€™ menu) 
-* have multiple tabs open within each window (again see the â€˜Shellâ€™ menu)
+* have multiple terminal windows on screen (see the 'Shell' menu) 
+* have multiple tabs open within each window (again see the 'Shell' menu)
 
 There will be many situations where it will be useful to have multiple terminals open and it will be a matter of preference as to whether you want to have multiple windows, or one window with multiple tabs (there are keyboard shortcuts for switching between windows, or moving between tabs). 
 
@@ -226,9 +161,9 @@ There will be many situations where it will be useful to have multiple terminals
 
 ## U2. Your first Unix command [U2]
 
-Unix keeps files arranged in a hierarchical structure. From the 'top-level' of the computer, there will be a number of directories, each of which can contain files and subdirectories, and each of those in turn can of course contain more files and directories and so on, ad infinitum. Itâ€™s important to note that you will always be â€œinâ€ a directory when using the terminal. The default behavior is that when you open a new terminal you start in your own 'homeâ€ directory (containing files and directories that only you can modify).
+Unix keeps files arranged in a hierarchical structure. From the 'top-level' of the computer, there will be a number of directories, each of which can contain files and subdirectories, and each of those in turn can of course contain more files and directories and so on, ad infinitum. It's important to note that you will always be â€œinâ€ a directory when using the terminal. The default behavior is that when you open a new terminal you start in your own 'homeâ€ directory (containing files and directories that only you can modify).
 
-To see what files are in our home directory, we need to use the [ls][] command. This command â€˜listsâ€™ the contents of a directory. So why donâ€™t they call the command â€˜listâ€™ instead? Well, this is a good thing because typing long commands over and over again is tiring and time-consuming. There are many (frequently used) Unix commands that are just two or three letters. If we run the ls command we should see something like:
+To see what files are in our home directory, we need to use the [ls][] command. This command 'lists' the contents of a directory. So why don't they call the command 'list' instead? Well, this is a good thing because typing long commands over and over again is tiring and time-consuming. There are many (frequently used) Unix commands that are just two or three letters. If we run the ls command we should see something like:
 
 	olson27-1:~ kbradnam$ ls 
 	Application Shortcuts 	Documents	Library 
@@ -237,9 +172,9 @@ To see what files are in our home directory, we need to use the [ls][] command. 
 
 There are four things that you should note here:
 
-1. You will probably see different output to what is shown here, it depends on your computer. Donâ€™t worry about that for now. 
-2. The `olson27-1:~ kbradnam$` text that you see is the Unix [command prompt][]. It contains a user name (kbradnam), the name of the machine that this user is working on (â€˜olson27-1â€™ and the name of the current directory (â€˜~â€™ more on that later). Note that the command prompt might not look the same on different Unix systems. In this case, the $ sign marks the end of the prompt. 
-3. The output of the `ls` command lists five things. In this case, they are all directories, but they could also be files. Weâ€™ll learn how to tell them apart later on. 
+1. You will probably see different output to what is shown here, it depends on your computer. Don't worry about that for now. 
+2. The `olson27-1:~ kbradnam$` text that you see is the Unix [command prompt][]. It contains a user name (kbradnam), the name of the machine that this user is working on ('olson27-1' and the name of the current directory ('~' more on that later). Note that the command prompt might not look the same on different Unix systems. In this case, the $ sign marks the end of the prompt. 
+3. The output of the `ls` command lists five things. In this case, they are all directories, but they could also be files. We'll learn how to tell them apart later on. 
 4. After the `ls` command finishes it produces a new command prompt, ready for you to type your next command.
 
 The `ls` command is used to list the contents of _any_ directory, not necessarily the one that you are currently in. Plug in your USB drive, and type the following:
@@ -256,9 +191,9 @@ On a Mac, plugged in drives appear as subdirectories in the special 'Volumes' di
 
 ## U3: The Unix tree [U3]
 
-Looking at directories from within a Unix terminal can often seem confusing. But bear in mind that these directories are exactly the same type of folders that you can see if you use Appleâ€™s graphical file-management program (known as â€˜The Finderâ€™). A tree analogy is often used when describing computer filesystems. From the root level (/) there can be one or more top level directories, though most Macs will have about a dozen. In the example below, we show just three. When you log in to a computer you are working with your files in your home directory, and this will nearly always be inside a â€˜Usersâ€™ directory. On many computers there will be multiple users.
+Looking at directories from within a Unix terminal can often seem confusing. But bear in mind that these directories are exactly the same type of folders that you can see if you use Apple's graphical file-management program (known as 'The Finder'). A tree analogy is often used when describing computer filesystems. From the root level (/) there can be one or more top level directories, though most Macs will have about a dozen. In the example below, we show just three. When you log in to a computer you are working with your files in your home directory, and this will nearly always be inside a 'Users' directory. On many computers there will be multiple users.
 
-All Macs have an applications directory where all the GUI (graphical user interface) programs are kept (e.g. iTunes, Microsoft Word, Terminal). Another directory that will be on all Macs is the Volumes directory. In addition to any attached _external_ drives, the Volumes directory should also contain directories for every _internal_ hard drive (of which there should be at least one, in this case itâ€™s simply called â€˜Macâ€™). It will help to think of this tree when we come to copying and moving files. E.g. if we had a file in the â€˜Codeâ€™ directory and wanted to copy it to the â€˜keithâ€™ directory, we would have to go _up_ four levels to the root level, and then _down_ two levels.
+All Macs have an applications directory where all the GUI (graphical user interface) programs are kept (e.g. iTunes, Microsoft Word, Terminal). Another directory that will be on all Macs is the Volumes directory. In addition to any attached _external_ drives, the Volumes directory should also contain directories for every _internal_ hard drive (of which there should be at least one, in this case it's simply called 'Mac'). It will help to think of this tree when we come to copying and moving files. E.g. if we had a file in the 'Code' directory and wanted to copy it to the 'keith' directory, we would have to go _up_ four levels to the root level, and then _down_ two levels.
 
 ![Example directory structure](http://korflab.ucdavis.edu/Unix_and_Perl/directory_tree.png)
 
@@ -267,15 +202,15 @@ All Macs have an applications directory where all the GUI (graphical user interf
 ##U4: Finding out where you are [U4]
 
 There may be many hundreds of directories on any Unix machine, so how do you know which one you are in? The command 
-[pwd][] will Print the [Working Directory][] and thatâ€™s pretty much all this command does:
+[pwd][] will Print the [Working Directory][] and that's pretty much all this command does:
 
 	olson27-1:~ kbradnam$ pwd 
 	/users/clmuser
 
 When you log in to a Unix computer, you are typically placed into your _home_ directory. In this example, after we log in, we are placed in a directory called 'clmuser' which itself is a subdirectory of another directory called 'users'. Conversely, 'users' is the parent directory of 'clmuser'. The first forward slash that appears in a list of directory names always refers to the top level directory of the file system (known as the [root directory][]). The remaining forward slash (between 'users' and 'clmuser') delimits the various parts of the directory hierarchy. If you ever get 'lost' in Unix, remember the `pwd` command.
 
-As you learn Unix you will frequently type commands that donâ€™t seem to work. Most of the time this will be because you
-are in the wrong directory, so itâ€™s a really good habit to get used to running the `pwd` command a lot.
+As you learn Unix you will frequently type commands that don't seem to work. Most of the time this will be because you
+are in the wrong directory, so it's a really good habit to get used to running the `pwd` command a lot.
 
 [pwd]: http://en.wikipedia.org/wiki/Pwd
 [Working Directory]: http://en.wikipedia.org/wiki/Working_directory
@@ -315,7 +250,7 @@ Note that the second and third commands do not include a forward slash. When you
 	$ cd Volumes 
 	$ cd /Volumes
 
-The error is because without including a leading slash, Unix is trying to change to a â€˜Volumesâ€™ directory below your current level in the file hierarchy (/Volumes/USB/Unix_and_Perl_course), and there is no directory called Volumes at this location.
+The error is because without including a leading slash, Unix is trying to change to a 'Volumes' directory below your current level in the file hierarchy (/Volumes/USB/Unix_and_Perl_course), and there is no directory called Volumes at this location.
 
 ---
 
@@ -330,7 +265,7 @@ Frequently, you will find that you want to go 'upwards' one level in the directo
 	$ pwd 
 	/Volumes/USB
 
-What if you wanted to navigate up _two_ levels in the file system in one go? Itâ€™s very simple, just use two sets of the `..` operator, separated by a forward slash:
+What if you wanted to navigate up _two_ levels in the file system in one go? It's very simple, just use two sets of the `..` operator, separated by a forward slash:
 
 	$ cd /Volumes/USB/Unix_and_Perl_course 
 	$ pwd 
@@ -341,7 +276,7 @@ What if you wanted to navigate up _two_ levels in the file system in one go? It�
 	
 ---	
 	
-## U8: Iâ€™m absolutely sure that this is all relative [U8]
+## U8: I'm absolutely sure that this is all relative [U8]
 
 Using `cd ..` allows us to change directory _relative_ to where we are now. You can also always change to a directory based on its _absolute_ location. E.g. if you are working in the `/Volumes/USB/Unix_and_Perl_course/Code` directory and you then want to change to the `/Volumes/USB/Unix_and_Perl_course/Data` directory, then you could do either of the following:
 
@@ -388,7 +323,7 @@ The `..` operator that we saw earlier can also be used with the `ls` command. Ca
 	System			mach_kernel	var 
 	Users			mach_kernel.ctfsys
 
-The `ls` command (like most Unix commands) has a set of options that can be added to the command to change the results. Command-line options in Unix are specified by using a dash (â€˜-â€™) after the command name followed by various letters, numbers, or words. If you add the letter â€˜lâ€™ to the `ls` command it will give you a â€˜longerâ€™ output compared to the default:
+The `ls` command (like most Unix commands) has a set of options that can be added to the command to change the results. Command-line options in Unix are specified by using a dash ('-') after the command name followed by various letters, numbers, or words. If you add the letter 'l' to the `ls` command it will give you a 'longer' output compared to the default:
 
 	$ ls -l /Volumes/USB/Unix_and_Perl_course 
 	total 192 
@@ -407,22 +342,22 @@ There are many, many different options for the ls command. Try out the following
 	ls -l -t -r 
 	ls -lh
 
-Note that the last example combine multiple options but only use one dash. This is a very common way of specifying multiple command-line options. You may be wondering what some of these options are doing. Itâ€™s time to learn about Unix documentation....
+Note that the last example combine multiple options but only use one dash. This is a very common way of specifying multiple command-line options. You may be wondering what some of these options are doing. It's time to learn about Unix documentation....
 
 ---
 
 ## U11: Man your battle stations! [U11]
 
 If every Unix command has so many options, you might be wondering how you find out what they are and what they do. Well,
-thankfully every Unix command has an associated â€˜manualâ€™ that you can access by using the `man` command. E.g.
+thankfully every Unix command has an associated 'manual' that you can access by using the `man` command. E.g.
 
 	$ man ls 
 	$ man cd
 	$ man man # yes even the man command has a manual page
 
-When you are using the man command, press `space` to scroll down a page, `b` to go back a page, or `q` to quit. You can also use the up and down arrows to scroll a line at a time. The man command is actually using another Unix program, a text viewer called `less`, which weâ€™ll come to later on.
+When you are using the man command, press `space` to scroll down a page, `b` to go back a page, or `q` to quit. You can also use the up and down arrows to scroll a line at a time. The man command is actually using another Unix program, a text viewer called `less`, which we'll come to later on.
 
-Some Unix commands have very long manual pages, which might seem very confusing. It is typical though to always list the command line options early on in the documentation, so you shouldnâ€™t have to read too much in order to find out what a command-line option is doing.
+Some Unix commands have very long manual pages, which might seem very confusing. It is typical though to always list the command line options early on in the documentation, so you shouldn't have to read too much in order to find out what a command-line option is doing.
 
 ---
 
@@ -476,7 +411,7 @@ So the best Unix tip to learn early on is that you can [tab complete][] the name
 systems. Type enough letters that uniquely identify the name of a file, directory or program and press tab...Unix will
 do the rest. E.g. if you type 'tou' and then press tab, Unix will autocomplete the word to touch (which we will learn
 more about in a minute). In this case, tab completion will occur because there are no other Unix commands that start
-with 'tou'. If pressing tab doesnâ€™t do anything, then you have not have typed enough unique characters. In this case
+with 'tou'. If pressing tab doesn't do anything, then you have not have typed enough unique characters. In this case
 pressing tab _twice_ will show you all possible completions. This trick can save you a LOT of typing...if you don't use
 tab-completion then you must be a masochist.
 
@@ -506,7 +441,7 @@ The following sections will deal with Unix commands that help us to work with fi
 
 ## U16: Moving heaven and earth [U16]
 
-Now, letâ€™s assume that we want to move these files to a new directory (â€˜Tempâ€™). We will do this using the Unix [mv][] (move) command:
+Now, let's assume that we want to move these files to a new directory ('Temp'). We will do this using the Unix [mv][] (move) command:
 
 	$ mkdir Temp 
 	$ mv heaven.txt Temp/ 
@@ -523,10 +458,10 @@ target location. If we had wanted to we could have moved both files in one go by
 	$ mv *t Temp/ 
 	$ mv *ea* Temp/
 
-The asterisk `*` acts as a [wild-card character][], essentially meaning â€˜match anything'. The second example works because there are no other files or directories in the directory that end with the letters 't' (if there was, then they would be copied too).  Likewise, the third example works because only those two files contain the letters â€˜eaâ€™ in their names. Using wild-card characters can save you a lot of typing.
+The asterisk `*` acts as a [wild-card character][], essentially meaning 'match anything'. The second example works because there are no other files or directories in the directory that end with the letters 't' (if there was, then they would be copied too).  Likewise, the third example works because only those two files contain the letters 'ea' in their names. Using wild-card characters can save you a lot of typing.
 
 #### Task U16.1 [U16.1]
-Use `touch` to create three files called 'fat', 'fit', and â€˜feetâ€™ inside the Temp directory. I.e.
+Use `touch` to create three files called 'fat', 'fit', and 'feet' inside the Temp directory. I.e.
 
 	$ cd Temp
 	$ touch fat fit feet
@@ -540,7 +475,7 @@ Then type either `ls f?t` or `ls f*t` and see what happens. The ? character is a
 
 ## U17: Renaming files [U17]
 
-In the earlier example, the destination for the `mv` command was a directory name (Temp). So we moved a file from its source location to a target location ('source' and 'target' are important concepts for many Unix commands). But note that the target could have also been a (different) file name, rather than a directory. E.g. letâ€™s make a new file and move it whilst renaming it at the same time:
+In the earlier example, the destination for the `mv` command was a directory name (Temp). So we moved a file from its source location to a target location ('source' and 'target' are important concepts for many Unix commands). But note that the target could have also been a (different) file name, rather than a directory. E.g. let's make a new file and move it whilst renaming it at the same time:
 
 	$ touch rags 
 	$ ls 
@@ -559,7 +494,7 @@ In this example we create a new file ('rags') and move it to a new location and 
 
 ## U18: Stay on target [U18]
 
-It is important to understand that as long as you have specified a 'source' and a 'target' location when you are moving a file, then it doesnâ€™t matter what your current directory is. You can move or copy things within the same directory or between different directories regardless of whether you are â€œinâ€ any of those directories. Moving directories is just like moving files:
+It is important to understand that as long as you have specified a 'source' and a 'target' location when you are moving a file, then it doesn't matter what your current directory is. You can move or copy things within the same directory or between different directories regardless of whether you are â€œinâ€ any of those directories. Moving directories is just like moving files:
 
 	$ mkdir Temp2 
 	$ ls 
@@ -577,7 +512,7 @@ Create another Temp directory (Temp3) and then change directory to your home dir
 
 ## U19: Here, there, and everywhere [U19]
 
-The philosophy of â€˜not having to be in a directory to do something in that directoryâ€™, extends to just about any operation that you might want to do in Unix. Just because we need to do something with file X, it doesnâ€™t necessarily mean that we have to change directory to wherever file X is located. Letâ€™s assume that we just want to quickly check what is in the Data directory before continuing work with whatever we were previously doing in /Volumes/USB/Unix_and_Perl_course. Which of the following looks more convenient:
+The philosophy of 'not having to be in a directory to do something in that directory', extends to just about any operation that you might want to do in Unix. Just because we need to do something with file X, it doesn't necessarily mean that we have to change directory to wherever file X is located. Let's assume that we just want to quickly check what is in the Data directory before continuing work with whatever we were previously doing in /Volumes/USB/Unix_and_Perl_course. Which of the following looks more convenient:
 
 	$ cd Data 
 	$ ls 
@@ -602,9 +537,9 @@ Run the following two commands and compare the output
 
 	$ ls Documentation/
 
-The two examples are not quite identical, but they produce identical output. So does the trailing slash character in the second example matter? Well not really. In both cases we have a directory named â€˜Documentationâ€™ and it is optional as to whether you include the trailing slash. When you tab complete any Unix directory name, you will find that a trailing slash character is automatically added for you. This becomes useful when that directory contains subdirectories which you also want to tab complete.
+The two examples are not quite identical, but they produce identical output. So does the trailing slash character in the second example matter? Well not really. In both cases we have a directory named 'Documentation' and it is optional as to whether you include the trailing slash. When you tab complete any Unix directory name, you will find that a trailing slash character is automatically added for you. This becomes useful when that directory contains subdirectories which you also want to tab complete.
 
-I.e. imagine if you had to type the following (to access a buried directory â€˜gggâ€™) and tab-completion _didnâ€™t_ add the trailing slash characters. Youâ€™d have to type the seven slashes yourself.
+I.e. imagine if you had to type the following (to access a buried directory 'ggg') and tab-completion _didn't_ add the trailing slash characters. You'd have to type the seven slashes yourself.
 
 	$ cd aaa/bbb/ccc/ddd/eee/fff/ggg/
 	
@@ -612,7 +547,7 @@ I.e. imagine if you had to type the following (to access a buried directory â�
 	
 ## U21: The most dangerous Unix command you will ever learn! [U21]
 
-You've seen how to remove a directory with the `rmdir` command, but `rmdir` wonâ€™t remove directories if they contain any files. So how can we remove the files we have created (in /Volumes/USB/Unix_and_Perl_course/Temp)? In order to do this, we will have to use the [rm][] (remove) command.
+You've seen how to remove a directory with the `rmdir` command, but `rmdir` won't remove directories if they contain any files. So how can we remove the files we have created (in /Volumes/USB/Unix_and_Perl_course/Temp)? In order to do this, we will have to use the [rm][] (remove) command.
 
 >***Please read the next section VERY carefully. Misuse of the rm command can lead to needless death & destruction*** 
 
@@ -632,7 +567,7 @@ Let me repeat that last part again. It is possible to delete EVERY file you have
 We could have simplified this step by using a wild-card (e.g. `rm -i *.txt`).
 
 #### Task U21.1 [U21.1]
-Remove the last file in the Temp directory (â€˜ragsâ€™) and then remove the two empty directories (Temp 2 & Temp3).
+Remove the last file in the Temp directory ('rags') and then remove the two empty directories (Temp 2 & Temp3).
 
 [rm]: http://en.wikipedia.org/wiki/Rm_(Unix)
 
@@ -640,15 +575,15 @@ Remove the last file in the Temp directory (â€˜ragsâ€™) and then remove
 
 ## U22: Go forth and multiply [U22]
 
-Copying files with the [cp][] (copy) command is very similar to moving them. Remember to always specify a source and a target location. Letâ€™s create a new file and make a copy of it.
+Copying files with the [cp][] (copy) command is very similar to moving them. Remember to always specify a source and a target location. Let's create a new file and make a copy of it.
 
 	$ touch file1 
 	$ cp file1 file2 
 	$ ls 
 	file1	file2
 
-What if we wanted to copy files from a different directory to our current directory? Letâ€™s put a file in our home
-directory (specified by â€˜~â€™ remember) and copy it to the USB drive:
+What if we wanted to copy files from a different directory to our current directory? Let's put a file in our home
+directory (specified by '~' remember) and copy it to the USB drive:
 
 	$ touch ~/file3 
 	$ ls 
@@ -664,11 +599,11 @@ This last step introduces another new concept. In Unix, the current directory ca
 
 In this case, using the dot is somewhat pointless because `ls` will already list the contents of the current directory by default. Also note again how the trailing slash is optional.
 
-Letâ€™s try the opposite situation and copy these files back to the home directory (even though one of them is already there). The default behavior of copy is to overwrite (without warning) files that have the same name, so be careful.
+Let's try the opposite situation and copy these files back to the home directory (even though one of them is already there). The default behavior of copy is to overwrite (without warning) files that have the same name, so be careful.
 
 	$ cp file* ~/
 
-Based on what we have already covered, do you think the trailing slash in â€˜~/â€™ is necessary? 
+Based on what we have already covered, do you think the trailing slash in '~/' is necessary? 
 
 ---
 
@@ -689,7 +624,7 @@ The `cp` command also allows us (with the use of a command-line option) to copy 
 	file1	file2	file3
 
 #### Task U23.1 [U23.1]
-The `-R` option means â€˜copy recursivelyâ€™, many other Unix commands also have a similar option. See what happens if you donâ€™t include the `-R` option. Weâ€™ve finished with all of these temporary files now. Make sure you remove the Temp directory and its contents (remember to always use `rm -i`).
+The `-R` option means 'copy recursively', many other Unix commands also have a similar option. See what happens if you don't include the `-R` option. We've finished with all of these temporary files now. Make sure you remove the Temp directory and its contents (remember to always use `rm -i`).
 
 [cp]: http://en.wikipedia.org/wiki/Cp_(Unix)
 
@@ -697,7 +632,7 @@ The `-R` option means â€˜copy recursivelyâ€™, many other Unix commands 
 
 ## U24: When things go wrong [U24]
 
-At this point in the course, you may have tried typing some of these commands and have found that things did not work as expected. Some people will then assume that the computer doesnâ€™t like them and that it is being deliberately mischievous. The more likely explanation is that you made a typing error. Maybe you have seen one the following error messages:
+At this point in the course, you may have tried typing some of these commands and have found that things did not work as expected. Some people will then assume that the computer doesn't like them and that it is being deliberately mischievous. The more likely explanation is that you made a typing error. Maybe you have seen one the following error messages:
 
 	$ ls Codee 
 	ls: Codee: No such file or directory
@@ -712,7 +647,7 @@ In both cases, we included a deliberate typo when specifying the name of the dir
 
 ## U25: Less is more [U25]
 
-So far we have covered listing the contents of directories and moving/copying/deleting either files and/or directories. Now we will quickly cover how you can look at files; in Unix the [less][less command] command lets you view (but not edit) text files. Letâ€™s take a look at a file of _Arabidopsis thaliana_ protein sequences:
+So far we have covered listing the contents of directories and moving/copying/deleting either files and/or directories. Now we will quickly cover how you can look at files; in Unix the [less][less command] command lets you view (but not edit) text files. Let's take a look at a file of _Arabidopsis thaliana_ protein sequences:
 
 	$ less Data/Arabidopsis/At_proteins.fasta
 
@@ -724,7 +659,7 @@ When you are using less, you can bring up a page of help commands by pressing `h
 
 ## U26: Directory enquiries [U26]
 
-When you have a directory containing a mixture of files and directories, it is not often clear which is which. One solution is to use `ls -l` which will put a â€˜dâ€™ at the start of each line of output for items which are directories. A better solution is to use `ls -p`. This command simply adds a trailing slash character to those items which are directories. Compare the following:
+When you have a directory containing a mixture of files and directories, it is not often clear which is which. One solution is to use `ls -l` which will put a 'd' at the start of each line of output for items which are directories. A better solution is to use `ls -p`. This command simply adds a trailing slash character to those items which are directories. Compare the following:
 
 	$ ls 
 	Applications	Data	file1 	Code	Documentation	file2
@@ -732,13 +667,13 @@ When you have a directory containing a mixture of files and directories, it is n
 	$ ls -p 
 	Applications/	Data/	file1 	Code/	Documentation/	file2
 
-Hopefully, youâ€™ll agree that the second example makes things a little clearer. You can also do things like always capitalizing directory names (like I have done) but ideally we would suggest that you always use `ls -p`. If this sounds a bit of a pain, then it is. Ideally you want to be able to make `ls -p` the default behavior for `ls`. Luckily, there is a way of doing this by using Unix [aliases][]. Itâ€™s very easy to create an alias:
+Hopefully, you'll agree that the second example makes things a little clearer. You can also do things like always capitalizing directory names (like I have done) but ideally we would suggest that you always use `ls -p`. If this sounds a bit of a pain, then it is. Ideally you want to be able to make `ls -p` the default behavior for `ls`. Luckily, there is a way of doing this by using Unix [aliases][]. It's very easy to create an alias:
 
 	$ alias ls='ls -p' 
 	$ ls 
 	Applications/	Data/	file1 	Code/	Documentation/	file2
 
-If you have trouble remembering what some of these very short Unix commands do, then aliases allow you to use human-readable alternatives. I.e. you could make a â€˜copyâ€™ alias for the cp commandâ€™ or even make â€˜list_files_sorted_by_dateâ€™ perform the `ls -lt` command. Note that aliases do not replace the original command. It can be dangerous to use the name of an existing command as an alias for a different command. I.e. you could make an `rm` alias that put files to a â€˜trashâ€™ directory by using the `mv` command. This might work for you, but what if you start working on someone elseâ€™s machine who doesnâ€™t have that alias? Or what if someone else starts working on your machine?
+If you have trouble remembering what some of these very short Unix commands do, then aliases allow you to use human-readable alternatives. I.e. you could make a 'copy' alias for the cp command' or even make 'list_files_sorted_by_date' perform the `ls -lt` command. Note that aliases do not replace the original command. It can be dangerous to use the name of an existing command as an alias for a different command. I.e. you could make an `rm` alias that put files to a 'trash' directory by using the `mv` command. This might work for you, but what if you start working on someone else's machine who doesn't have that alias? Or what if someone else starts working on your machine?
 
 #### Task U26.1 [U26.1]
 Create an alias such that typing `rm` will always invoke `rm -i`. Try running the alias command on its own to see what happens. Now open a new terminal window (or a new tab) and try running your `ls` alias. What happens?
@@ -749,7 +684,7 @@ Create an alias such that typing `rm` will always invoke `rm -i`. Try running th
 
 ## U27: Fire the editor [U27]
 
-The problem with aliases is that they only exist in the current terminal session. Once you log out, or use a new terminal window, then youâ€™ll have to retype the alias. Fortunately though, there is a way of storing settings like these. To do this, we need to be able to create a configuration file and this requires using a text editor. We could use a program like TextEdit to do this (or even Microsoft Word), but as this is a Unix course,  we will use a simple Unix editor called [`][]. Letâ€™s create a file called profile:
+The problem with aliases is that they only exist in the current terminal session. Once you log out, or use a new terminal window, then you'll have to retype the alias. Fortunately though, there is a way of storing settings like these. To do this, we need to be able to create a configuration file and this requires using a text editor. We could use a program like TextEdit to do this (or even Microsoft Word), but as this is a Unix course,  we will use a simple Unix editor called [`][]. Let's create a file called profile:
 
 	$ cd /Volumes/USB/Unix_and_Perl_course 
 	$ nano profile
@@ -758,16 +693,16 @@ You should see the following appear in your terminal:
 
 ![the nano editor](http://korflab.ucdavis.edu/Unix_and_Perl/nano.png)
 
-The bottom of the nano window shows you a list of simple commands which are all accessible by typing â€˜Controlâ€™ plus a letter. E.g. Control + X exits the program.
+The bottom of the nano window shows you a list of simple commands which are all accessible by typing 'Control' plus a letter. E.g. Control + X exits the program.
 
 #### Task U27.1 [U27.1]
-Type the following text in the editor and then save it (Control + O). Nano will ask if you want to â€˜save the modified bufferâ€™ and then ask if you want to keep the same name. Then exit nano (Control + X) and use `less` to confirm that the profile file contains the text you added.
+Type the following text in the editor and then save it (Control + O). Nano will ask if you want to 'save the modified buffer' and then ask if you want to keep the same name. Then exit nano (Control + X) and use `less` to confirm that the profile file contains the text you added.
 
 	# some useful command line short-cuts 
 	alias ls='ls -p' 
 	alias rm='rm -i'
 
-Now you have successfully created a configuration file (called â€˜profileâ€™) which contains two aliases. The first line that starts with a hash (#) is a comment, these are just notes that you can add to explain what the other lines are doing. But how do you get Unix to recognize the contents of this file? The [source][] command tells Unix to read the contents of a file and treat it as a series of Unix commands (but it will ignore any comments).
+Now you have successfully created a configuration file (called 'profile') which contains two aliases. The first line that starts with a hash (#) is a comment, these are just notes that you can add to explain what the other lines are doing. But how do you get Unix to recognize the contents of this file? The [source][] command tells Unix to read the contents of a file and treat it as a series of Unix commands (but it will ignore any comments).
 
 #### Task U27.2 [U27.2]
 Open a new terminal window or tab (to ensure that any aliases will not work) and then type the following (make sure you first change to the correct directory):
@@ -783,12 +718,12 @@ Now try the `ls` command to see if the output looks different. Next, use `touch`
 
 ## U28: Hidden treasure [U28]
 
-In addition to adding aliases, profile files in Unix are very useful for many other reasons. We have actually already created a profile for you. Itâ€™s in /Volumes/USB/Unix_and_Perl_course but you probably wonâ€™t have seen it yet. Thatâ€™s because it is a hidden file named â€˜.profileâ€™ (dot profile). If a filename starts with a dot, Unix will treat it as a hidden file. To see it, you  can use `ls -a` which lists all hidden files (there may be several more files that appear).
+In addition to adding aliases, profile files in Unix are very useful for many other reasons. We have actually already created a profile for you. It's in /Volumes/USB/Unix_and_Perl_course but you probably won't have seen it yet. That's because it is a hidden file named '.profile' (dot profile). If a filename starts with a dot, Unix will treat it as a hidden file. To see it, you  can use `ls -a` which lists all hidden files (there may be several more files that appear).
 
 #### Task U28.1 [U28.1]
 Use `less` to look at the profile file that we have created. See if you can understand what all the lines mean (any lines that start with a # are just comments). Use `source` to read this file. See how this changes the behavior of typing `cd` on its own. You can now delete the profile file that you made earlier, from now on we will use the .profile file.
 
-If you have a .profile file in your _home_ directory then it will be automatically read every time you open a new terminal. A problem for this class is your home directories are wiped each day, so we canâ€™t store files on the computer (which is why we are using the USB drive). So for this course we have to do a bit of extra work.
+If you have a .profile file in your _home_ directory then it will be automatically read every time you open a new terminal. A problem for this class is your home directories are wiped each day, so we can't store files on the computer (which is why we are using the USB drive). So for this course we have to do a bit of extra work.
 
 >***Remember to type:***  
 ***source /Volumes/USB/Unix_and_Perl_course/.profile***  
@@ -798,9 +733,9 @@ If you have a .profile file in your _home_ directory then it will be automatical
 
 ## U29: Sticking to the script [U29]
 
-Unix can also be used as a programming language just like Perl. Depending on what you want to do, a Unix script might solve all your problems and mean that you donâ€™t really need to learn Perl at all.
+Unix can also be used as a programming language just like Perl. Depending on what you want to do, a Unix script might solve all your problems and mean that you don't really need to learn Perl at all.
 
-So how do you make a Unix script (which are commonly called â€˜shell scriptsâ€™)? At the simplest level, we just write one or more  Unix commands to a file and then treat that file as if it was any other Unix command or program.
+So how do you make a Unix script (which are commonly called 'shell scripts')? At the simplest level, we just write one or more  Unix commands to a file and then treat that file as if it was any other Unix command or program.
 
 #### Task U29.1 [U29.1]
 Copy the following two lines to a file (using `nano`). Name that file hello.sh (shell scripts are typically given a .sh extension) and **make sure that you save this file in /Volumes/USB/Unix_and_Perl_course/Code**.
@@ -808,10 +743,10 @@ Copy the following two lines to a file (using `nano`). Name that file hello.sh (
 	# my first Unix shell script 
 	echo "Hello World"
 
-When you have done that, simply type â€˜hello.shâ€™ and see what happens. If you have previously run `source .profile` then you should be able to run â€˜hello.shâ€™ from any directory that you navigate to. If it worked, then it should have printed â€˜Hello worldâ€™. This very simple script uses the Unix command [echo][] which just prints output to the screen. Also note the comment that precedes the `echo` command, it is a good habit to add explanatory comments.
+When you have done that, simply type 'hello.sh' and see what happens. If you have previously run `source .profile` then you should be able to run 'hello.sh' from any directory that you navigate to. If it worked, then it should have printed 'Hello world'. This very simple script uses the Unix command [echo][] which just prints output to the screen. Also note the comment that precedes the `echo` command, it is a good habit to add explanatory comments.
 
 #### Task U29.2 [U29.2]
-Try moving the script outside of the Code directory (maybe move it â€˜upâ€™ one level) and then `cd` to that directory. Now try running the script again. You should find that it doesnâ€™t work anymore. Now try running `./hello.sh` (thatâ€™s a dot + slash at the beginning). It should work again.
+Try moving the script outside of the Code directory (maybe move it 'up' one level) and then `cd` to that directory. Now try running the script again. You should find that it doesn't work anymore. Now try running `./hello.sh` (that's a dot + slash at the beginning). It should work again.
 
 [echo]: http://en.wikipedia.org/wiki/Echo_(command)
 
@@ -823,7 +758,7 @@ The reason why the script worked when it was in the Code directory and then stop
 
 	PATH=$PATH":$HOME/Code"
 
-When you try running _any_ program in Unix, your computer will look in a set of predetermined places to see if a program by that name lives there. All Unix commands are just files that live in directories somewhere on your computer. Unix uses something called $PATH (which is an _environment variable_) to store a list of places to look for programs to run. In our .profile file we have just told Unix to also look in your Code directory. If we didnâ€™t add the Code directory to the $PATH, then we have to run the program by first typing ./ (dot slash). Remember that the dot means the current directory. Think of it as a way of forcing Unix to run a program (including Perl scripts).
+When you try running _any_ program in Unix, your computer will look in a set of predetermined places to see if a program by that name lives there. All Unix commands are just files that live in directories somewhere on your computer. Unix uses something called $PATH (which is an _environment variable_) to store a list of places to look for programs to run. In our .profile file we have just told Unix to also look in your Code directory. If we didn't add the Code directory to the $PATH, then we have to run the program by first typing ./ (dot slash). Remember that the dot means the current directory. Think of it as a way of forcing Unix to run a program (including Perl scripts).
 
 ---
 
@@ -833,9 +768,9 @@ Programs in Unix need permission to be run. We will normally always have to type
 
 	$ chmod u+x hello.sh
 
-This would use the [chmod][] to add _executable_ permissions (+x) to the file called â€˜hello.shâ€™ (the â€˜uâ€™ means add this permission to just you, the user). Without it, your script wonâ€™t run. Except that it did. One of the oddities of using the USB drive for this course, is that files copied to a USB drive have all permissions turned on by default. Just remember that you will normally need to run `chmod` on any script that you create. Itâ€™s probably a good habit to get into now.
+This would use the [chmod][] to add _executable_ permissions (+x) to the file called 'hello.sh' (the 'u' means add this permission to just you, the user). Without it, your script won't run. Except that it did. One of the oddities of using the USB drive for this course, is that files copied to a USB drive have all permissions turned on by default. Just remember that you will normally need to run `chmod` on any script that you create. It's probably a good habit to get into now.
 
-The chmod command can also modify read and write permissions for files, and change any of the three sets of permissions (read, write, execute) at the level of â€˜userâ€™, â€˜groupâ€™, and â€˜otherâ€™. You probably wonâ€™t need to know any more about the chmod command other than you need to use it to make scripts executable.
+The chmod command can also modify read and write permissions for files, and change any of the three sets of permissions (read, write, execute) at the level of 'user', 'group', and 'other'. You probably won't need to know any more about the chmod command other than you need to use it to make scripts executable.
 
 [chmod]: http://en.wikipedia.org/wiki/Chmod
 
@@ -872,9 +807,9 @@ Now go to the `Data/Unix_test_files/Text` directory. If you have run the exercis
 
 	$ change_file_extension.sh txt text
 
-Now run the `ls` command to see what has happened to the files in the directory. You should see that all the files that ended with â€˜txtâ€™ now end with â€˜textâ€™. Try using this script to change the file extensions of other files.
+Now run the `ls` command to see what has happened to the files in the directory. You should see that all the files that ended with 'txt' now end with 'text'. Try using this script to change the file extensions of other files.
 
-Itâ€™s not essential that you understand exactly how this script works at the moment (things will become clearer as you learn Perl), but you should at least see how a relatively simple Unix shell script can be potentially very useful.
+It's not essential that you understand exactly how this script works at the moment (things will become clearer as you learn Perl), but you should at least see how a relatively simple Unix shell script can be potentially very useful.
 
 ---
 
@@ -932,7 +867,7 @@ This will produce lots of output which will flood past your screen. If you ever 
 
 By now, you might be getting a bit fed up of waiting for the `grep` command to finish, or you might want a cleaner way of controlling things without having to reach for Ctrl-C. Ideally, you might want to look at the output from any command in a controlled manner, i.e. you might want to use a Unix program like less to view the output.
 
-This is very easy to do in Unix, you can send the output from any command to any other Unix program (as long as the second program accepts input of some sort). We do this by using what is known as a [pipe][]. This is implemented using the '|' character (which is a character which always seems to be on different keys depending on the keyboard that you are using). Think of the pipe as simply connecting two Unix programs. In this next example we send the output from `grep` down a pipe to the less program. Letâ€™s imagine that we just want to see lines in the input file which contain the pattern "ATGTGA" (a potential start and stop codon combined):
+This is very easy to do in Unix, you can send the output from any command to any other Unix program (as long as the second program accepts input of some sort). We do this by using what is known as a [pipe][]. This is implemented using the '|' character (which is a character which always seems to be on different keys depending on the keyboard that you are using). Think of the pipe as simply connecting two Unix programs. In this next example we send the output from `grep` down a pipe to the less program. Let's imagine that we just want to see lines in the input file which contain the pattern "ATGTGA" (a potential start and stop codon combined):
 
 	$ grep "ATGTGA" intron_IME_data.fasta | less
 
@@ -959,7 +894,7 @@ Notice that you still have control of your output as you are now in the `less` p
 
 ## U35: Heads and tails [U35]
 
-Sometimes we do not want to use `less` to see _all_ of the output from a command like grep. We might just want to see a few lines to get a feeling for what the output looks like, or just check that our program (or Unix command) is working properly. There are two useful Unix commands for doing this: head and tail. These commands show (by default) the first or last 10 lines of a file (though it is easy to specify more or fewer lines of output). So now, letâ€™s look for another pattern which might be in all the sequence files in the directory. If we didn't know whether the DNA/protein sequence in a FASTA files was in upper-case or lower-case letters, then we could use the `-i` option of `grep` which 'ignores' case when searching:
+Sometimes we do not want to use `less` to see _all_ of the output from a command like grep. We might just want to see a few lines to get a feeling for what the output looks like, or just check that our program (or Unix command) is working properly. There are two useful Unix commands for doing this: head and tail. These commands show (by default) the first or last 10 lines of a file (though it is easy to specify more or fewer lines of output). So now, let's look for another pattern which might be in all the sequence files in the directory. If we didn't know whether the DNA/protein sequence in a FASTA files was in upper-case or lower-case letters, then we could use the `-i` option of `grep` which 'ignores' case when searching:
 
 	$ grep -i ACGTC * | head
 	At_proteins.fasta:TYRSPRCNSAVCSRAGSIACGTCFSPPRPGCSNNTCGAFPDNSITGWATSGEFALDVVSIQSTNGSNPGRFVKIPNLIFS
@@ -973,7 +908,7 @@ Sometimes we do not want to use `less` to see _all_ of the output from a command
 	chr1.fasta:CTGCAAAGGCCTACCTGTTTGTCCCTGTTACTGACAATACGTCTATGGAACCCATAAAAGGGATCAACTGGGAATTGGT
 	chr1.fasta:ACGTCGAAGGGGGTAAGATTGCAGCTAATCATTTGATGAAATGGATTGGGATTCACGTGGAGGATGATCCTGATGAAGT
 
-The `*` character acts as a wildcard meaning 'search all files in the current directory' and the `head` command restricts the total amount of output to 10 lines. Notice that the output also includes the name of the file containing the matching pattern. In this case, the `grep` command finds the ACGTC pattern in four protein sequences and several lines of the the chromosome 1 DNA sequence (we donâ€™t know how many exactly because the head command is only giving us ten lines of output).
+The `*` character acts as a wildcard meaning 'search all files in the current directory' and the `head` command restricts the total amount of output to 10 lines. Notice that the output also includes the name of the file containing the matching pattern. In this case, the `grep` command finds the ACGTC pattern in four protein sequences and several lines of the the chromosome 1 DNA sequence (we don't know how many exactly because the head command is only giving us ten lines of output).
 
 [head]: http://en.wikipedia.org/wiki/Head_(Unix)
 [tail]: http://en.wikipedia.org/wiki/Tail_(Unix)
@@ -990,7 +925,7 @@ A concept that is supported by many Unix programs and also by most programming l
 	ATGATAGCTCAACCACGAAATGTCATTACCTGAAACCCTTAAACACACTCTACCTCAAACTTACTGGTAAAAACATTGA
 	ATGCATACCTCAGTTGCATCCCGGCGCAGGGCAAGCATACCCGCTTCAACACACACTGCTTTGAGTTGAGCTCCATTGA
 
-Youâ€™ll learn more about regular expressions when you learn Perl. The `^` character is a special character that tells `grep` to only match a pattern if it occurs at the start of a line. Similarly, the `$` tells `grep` to match patterns that occur at the end of the line.
+You'll learn more about regular expressions when you learn Perl. The `^` character is a special character that tells `grep` to only match a pattern if it occurs at the start of a line. Similarly, the `$` tells `grep` to match patterns that occur at the end of the line.
 
 #### Task U36.1 [U36.1]
 The `.` and `*` characters are also special characters that form part of the regular expression. Try to understand how the following patterns all differ. Try using each of these these patterns with `grep` against any one of the sequence files. Can you predict which of the five patterns will generate the most matches?
@@ -1054,15 +989,15 @@ another range of characters:
 
 ---
 
-## U40: Thatâ€™s what she sed [U40]
+## U40: That's what she sed [U40]
 
-The `tr` command letâ€™s you change a range of characters into another range. But what if you wanted to change a particular pattern into something completely different? Unix has  a very powerful command called [sed][] that is capable of performing a variety of text manipulations. Letâ€™s assume that you want to change the way the FASTA header looks:
+The `tr` command let's you change a range of characters into another range. But what if you wanted to change a particular pattern into something completely different? Unix has  a very powerful command called [sed][] that is capable of performing a variety of text manipulations. Let's assume that you want to change the way the FASTA header looks:
 
 	$ head -n 1 chr1.fasta >Chr1 dumped from ADB: Mar/14/08 12:28; last updated: 2007-12-20
 
 	$ head -n 1 chr1.fasta | sed 's/Chr1/Chromosome 1/' >Chromosome 1 dumped from ADB: Mar/14/08 12:28; last updated: 2007-12-20
 
-The 's' part of the `sed` command puts `sed` in 'substitute' mode, where you specify one pattern (between the first two forward slashes) to be replaced by another pattern (specified between the second set of forward slashes). Note that this doesnâ€™t actually change the contents of the file, it just changes the screen output from the previous command in the pipe. We will learn later on how to send the output from a command into a new file.
+The 's' part of the `sed` command puts `sed` in 'substitute' mode, where you specify one pattern (between the first two forward slashes) to be replaced by another pattern (specified between the second set of forward slashes). Note that this doesn't actually change the contents of the file, it just changes the screen output from the previous command in the pipe. We will learn later on how to send the output from a command into a new file.
 
 [sed]: http://en.wikipedia.org/wiki/Sed
 
@@ -1127,13 +1062,13 @@ The 2nd and/or 3rd fields of a GFF file are usually used to describe some sort o
 	three_prime_UTR 
 	transposable_element_gene
 
-In this example, we combine three separate Unix commands together in one go. Letâ€™s break it down (it can be useful to just run each command one at at time to see how each additional command is modifying the preceding output):
+In this example, we combine three separate Unix commands together in one go. Let's break it down (it can be useful to just run each command one at at time to see how each additional command is modifying the preceding output):
 
 1. The [cut][] command first takes the At_genes_subset.gff file and 'cuts' out just the 3rd column (as specified by the `-f` option). Luckily, the default behavior for the `cut` command is to split text files into columns based on tab characters (if the columns were separated by another character such as a comma then we would need to use another command line option to specify the comma). 
 2. The [sort][] command takes the output of the cut command and sorts it alphanumerically.
 3. The [uniq][] command (in its default format) only keeps lines which are unique to the output (otherwise you would see thousands of fields which said 'curated', 'Coding_transcript' etc.)
 
-Now letâ€™s imagine that you might want to find which features start earliest in the chromosome sequence. The start coordinate of features is always specified by column 4 of the GFF file, so:
+Now let's imagine that you might want to find which features start earliest in the chromosome sequence. The start coordinate of features is always specified by column 4 of the GFF file, so:
 
 	$ cut -f 3,4 At_genes_subset.gff | sort -n -k 2 | head
 
@@ -1292,7 +1227,7 @@ Now notice what happens when you start entering text into the main Fraise window
 
 ![Unsaved document with text](http://korflab.ucdavis.edu/Unix_and_Perl/fraise4.png)
 
-This is meant to serve as a visual reminder that your file is still unsaved. As soon as you click the â€˜Saveâ€™ button, this black dot will disappear. From time to time you will have problems with your Perl scripts, and this might simply be because you have not saved any changes that you have made.
+This is meant to serve as a visual reminder that your file is still unsaved. As soon as you click the 'Save' button, this black dot will disappear. From time to time you will have problems with your Perl scripts, and this might simply be because you have not saved any changes that you have made.
 
 
 ---
@@ -1351,9 +1286,9 @@ Line 1 will appear at the top of every Perl script that we write from now on. Th
 
 Line 2 is simply a comment. You should always include a few comments in your programs.
 
-Line 3 is another line that we will add to every script from now on. This line effectively tells Perl that we would like to be warned if we start writing certain types of â€˜badâ€™ code. This is a good thing! We will return to this later on.
+Line 3 is another line that we will add to every script from now on. This line effectively tells Perl that we would like to be warned if we start writing certain types of 'bad' code. This is a good thing! We will return to this later on.
 
-Line 4 is deliberately blank. You should use spaces and blank lines to improve the readability of your code.  In this case we are separating the first three lines of the script (which donâ€™t actually calculate anything) from the rest.
+Line 4 is deliberately blank. You should use spaces and blank lines to improve the readability of your code.  In this case we are separating the first three lines of the script (which don't actually calculate anything) from the rest.
 
 Lines 5 is a variable assignment. The variable `$x` gets the value of 3
 
@@ -1411,15 +1346,15 @@ You can use (almost) anything for your variable names, though you should try to 
 
 It is perfectly fine to give a variable the same name as an existing function in Perl though this might be confusing. I.e. a variable named `$print` might look a bit too similar to the `print()` function. Sometimes though the choice of variable name is obvious: `$length` is often a good name for variables that contain the length of something, even though there is also a `length()` function in Perl (which we will learn about later on).
 
-As shown in the example above, variable names can contain underscore characters to separate â€˜wordsâ€™. This is often useful and helps make things easier to understand. E.g.
+As shown in the example above, variable names can contain underscore characters to separate 'words'. This is often useful and helps make things easier to understand. E.g.
 
 	$first_name  = "Keith"; 
 	$second_name = "Bradnam";
 
 Finally, you should be aware that (with a few exceptions) you can use spaces to make things clearer (or less clear if you so desire). The following lines are all treated by Perl in exactly the same way:
 
-	$dna = "ATGCAGTGA";       # one space either side of the â€˜=â€™ sign 
-	$dna="ATGCAGTGA";         # no spaces either side of the â€˜=â€™ sign 
+	$dna = "ATGCAGTGA";       # one space either side of the '=' sign 
+	$dna="ATGCAGTGA";         # no spaces either side of the '=' sign 
 	$dna    =    "ATGCAGTGA"; # lots of spaces!
 
 
@@ -1428,7 +1363,7 @@ Finally, you should be aware that (with a few exceptions) you can use spaces to 
 ## P3. Safer programming: `use strict` [P3]
 
 #### Task 3.1 [P3.1]
-Create the following program, but donâ€™t run it yet. Instead try to to predict what it will do. Knowing how a program should work (before you run it) is a good programming skill to develop. If you donâ€™t understand what a program should be doing, then you will probably not realize if it is doing something wrong.
+Create the following program, but don't run it yet. Instead try to to predict what it will do. Knowing how a program should work (before you run it) is a good programming skill to develop. If you don't understand what a program should be doing, then you will probably not realize if it is doing something wrong.
 
 	1.  #!/usr/bin/perl 
 	2.  # strict.pl by _insert_your_name_here_ 
@@ -1442,7 +1377,7 @@ Create the following program, but donâ€™t run it yet. Instead try to to pre
 
 You hopefully noticed that this program introduces another new concept; line 3 includes another usage statement: `use strict;` (in addition to `use warnings;`). Up till now we have ended each line of Perl code with a semi-colon, but there are times when it is simpler to put two lines of Perl code into one line in an editor. Perl will still treat these as two separate lines of code.
 
-Telling Perl to `use strict` means that Perl will insist your script is written in a certain way which is widely considered to be a â€˜betterâ€™ way of writing code. At this point it is not important to go into the details of what exactly `use strict` is doing. Just accept our word that including a `use strict; use warnings;` line in every script that you write is a good thing to do (we will return to these issues later).
+Telling Perl to `use strict` means that Perl will insist your script is written in a certain way which is widely considered to be a 'better' way of writing code. At this point it is not important to go into the details of what exactly `use strict` is doing. Just accept our word that including a `use strict; use warnings;` line in every script that you write is a good thing to do (we will return to these issues later).
 
 #### Task 3.2 [P3.2]
 Now try running the script. You should hopefully see the following errors:
@@ -1842,11 +1777,11 @@ Now add the following lines and find out what happens to $sequence.
 	12. $sequence =~ s/C//; 
 	13. print "$sequence\n";
 
-Line 12 replaces the occurrence of a C character with nothing (//), i.e. it deletes a C character. You should have noticed though that lines 10 and 12 only replaced the _first_ occurrence of the matching pattern. What if you wanted to replace all occurrences? To specify a â€˜globalâ€™ option (i.e. replace all occurrences), we add a letter â€˜gâ€™ to the end of the substitution operator:
+Line 12 replaces the occurrence of a C character with nothing (//), i.e. it deletes a C character. You should have noticed though that lines 10 and 12 only replaced the _first_ occurrence of the matching pattern. What if you wanted to replace all occurrences? To specify a 'global' option (i.e. replace all occurrences), we add a letter 'g' to the end of the substitution operator:
 
-	14. $sequence =~ s/C//g; # adding â€˜gâ€™ on the end of substitution operator
+	14. $sequence =~ s/C//g; # adding 'g' on the end of substitution operator
 
-This is similar to how we use command-line options in Unix, the â€˜globalâ€™ option modifies the default behavior of the operator.
+This is similar to how we use command-line options in Unix, the 'global' option modifies the default behavior of the operator.
 
 #### Task P6.6 [6.6]
 Add the following lines to the script and try to work out what happens when you add an 'i' to the to matching operator:
@@ -1868,10 +1803,10 @@ It is very common to stop scripts by using the 'die ... if' syntax. There is no 
 
 ### The transliteration operator
 
-The transliteration operator gets its own section as it is a little bit different to the other matching operators. If you worked through [Part 2] of the Unix lessons you may remember that there is a `tr` command in Unix. The transliteration operator behaves in the same way as this command. It takes a list of characters and changes each item in the list to a character in a second list, though we often use it with just one thing in each list. It automatically performs this operation on all characters in a string (so no need for a â€˜globalâ€™ option).
+The transliteration operator gets its own section as it is a little bit different to the other matching operators. If you worked through [Part 2] of the Unix lessons you may remember that there is a `tr` command in Unix. The transliteration operator behaves in the same way as this command. It takes a list of characters and changes each item in the list to a character in a second list, though we often use it with just one thing in each list. It automatically performs this operation on all characters in a string (so no need for a 'global' option).
 
 #### Task P6.8 [P6.8]
-Make a new script to test the full range of abilities of the transliteration operator. Notice how there are comments at the end of many of the lines (the hash character â€˜#â€™ denotes the start of a comment). You donâ€™t have to type these comments, but adding comments to your scripts is a good habit to get into. You will need to add suitable print statements to this script in order for it to do anything.
+Make a new script to test the full range of abilities of the transliteration operator. Notice how there are comments at the end of many of the lines (the hash character '#' denotes the start of a comment). You don't have to type these comments, but adding comments to your scripts is a good habit to get into. You will need to add suitable print statements to this script in order for it to do anything.
 
 	1.  #!/usr/bin/perl 
 	2.  # transliterate.pl 
@@ -1879,12 +1814,12 @@ Make a new script to test the full range of abilities of the transliteration ope
 	4. 
 	5.  my $text = "these are letters: abcdef, and these are numbers, 123456";
 	6. 
-	7.  $text =~ tr/a/b/;     # changes any occurrence of â€˜aâ€™ to â€˜bâ€™ 
-	8.  $text =~ tr/bs/at/;   # the letter â€˜bâ€™ becomes â€˜aâ€™, and â€˜sâ€™ becomes â€˜tâ€™ 
+	7.  $text =~ tr/a/b/;     # changes any occurrence of 'a' to 'b' 
+	8.  $text =~ tr/bs/at/;   # the letter 'b' becomes 'a', and 's' becomes 't' 
 	9.  $text =~ tr/123/321/; # 1 becomes 3, 2 stays as 2, 3 becomes 1 
 	10. $text =~ tr/abc/ABC/; # capitalize the letters a, b, and c 
-	11. $text =~ tr/ABC/X/;   # any â€˜Aâ€™, â€˜Bâ€™, or â€˜Câ€™ will become an X 
-	12. $text =~ tr/d/DE/;    # incorrect use, only â€˜dâ€™ will be changed to â€˜Dâ€™
+	11. $text =~ tr/ABC/X/;   # any 'A', 'B', or 'C' will become an X 
+	12. $text =~ tr/d/DE/;    # incorrect use, only 'd' will be changed to 'D'
 
 On Line 5 in this script we define a string and save that to a variable `$text`. Lines 7â€“-12 then perform a series of
 transliterations on the text.
@@ -1912,7 +1847,7 @@ Line 17 may appear confusing. The transliteration operator is changing the lette
 Remove the parentheses from line 17. Does the script still work? This is a case where the parentheses are not needed by Perl, but their inclusion might make your code more understandable. If you have any code where you use the assignment operator `=`, Perl always evaluates the right-hand side of the equals sign first.
 
 #### Task P6.12 [P6.12]
-Add the following line to your script and see if you can understand how to specify a â€˜rangeâ€™ of characters with the `tr` operator.
+Add the following line to your script and see if you can understand how to specify a 'range' of characters with the `tr` operator.
 
 	19. $sequence =~ tr/A-Z/a-z/;
 
@@ -1999,10 +1934,10 @@ Exchange the value of `$x` and `$y` without using list context. This is one of t
 
 ## P8. Safer programming: use warnings [P8]
 
-Weâ€™ve been telling you to always include a use warnings; line in your Perl scripts, but we havenâ€™t really explained why. Letâ€™s see what can happen when we _donâ€™t_ include it.
+We've been telling you to always include a use warnings; line in your Perl scripts, but we haven't really explained why. Let's see what can happen when we _don't_ include it.
 
 #### Task P8.1 [P8.1]
-In the last lesson, we discussed assignments in lists. What if the lists are not the same length? Let's find out. Try this program, but this time make sure that you _donâ€™t_ include the `use warnings` statement.
+In the last lesson, we discussed assignments in lists. What if the lists are not the same length? Let's find out. Try this program, but this time make sure that you _don't_ include the `use warnings` statement.
 
 	1.  #!/usr/bin/perl 
 	2.  # undefined.pl 
@@ -2565,7 +2500,7 @@ Line 8 introduces the [chomp()][] function. This removes a `\n` character from t
 
 Line 9 uses the [reverse()][] function to reverse the contents of `$_`. We haven't seen the `reverse()` function before. It reverses both strings and arrays.
 
-Lines 12 and 13 close the two filehandles. You should always get into the habit of making sure that every `open()` function has a matching `close()` function. It is possible that bad things will happen if you donâ€™t close a filehandle. You should also try to close a filehandle at the first opportunity when it is safe to do so, i.e. as soon as you are finished with reading from, or writing to, a file.
+Lines 12 and 13 close the two filehandles. You should always get into the habit of making sure that every `open()` function has a matching `close()` function. It is possible that bad things will happen if you don't close a filehandle. You should also try to close a filehandle at the first opportunity when it is safe to do so, i.e. as soon as you are finished with reading from, or writing to, a file.
 
 ### Naming filehandles - part 1
 
@@ -2864,7 +2799,7 @@ Have you ever wondered which protein sequences might contain your name? If you
 have a short name, and your name does not contain the letters B, J, O, U, X, or
 Z, then it may occur in many different protein sequences. If not, you may need
 to alter your name a little or try searching for questions (e.g.
-â€˜WHATISTHEANSWERâ€™).
+'WHATISTHEANSWER').
 
 ### Goal
 
@@ -2899,7 +2834,7 @@ introns near the promoter are compositionally distinct from introns farther
 downstream. This leads to a gene expression phenomenon known as 'intron-mediated
 enhancement' or IME. 
 
-We will make a program that will compare *Arabidopsis* introns that occur at different positions within a gene in order to determine just how different â€˜earlyâ€™ introns are compared to â€˜lateâ€™ introns, in terms of their nucleotide composition.
+We will make a program that will compare *Arabidopsis* introns that occur at different positions within a gene in order to determine just how different 'early' introns are compared to 'late' introns, in terms of their nucleotide composition.
 
 ### K-mers
 
@@ -2937,7 +2872,7 @@ report the log-odds ratio.
 
 
 	my $odds_ratio = $freq1{$kmer} / $freq2{$kmer};
-	my $lod = log($odds_ratio);  # Perlâ€™s log() function uses base e, so...
+	my $lod = log($odds_ratio);  # Perl's log() function uses base e, so...
 	my $lod2 = $lod / log(2);    # ...need to convert base e to base 2
 	printf "%s %.3f\n", $kmer, $lod2;
 
@@ -4088,7 +4023,7 @@ explanations in many examples, particularly the section on subroutines which gai
 
 2.1 - 7/22/09 - Added Preamble section to explain how to go about this course on a Windows machine. Added author bios.
 Changed directory structure for course files so that everything is contained within one parent directory
-(â€˜Unix_and_Perl_courseâ€™). Broke several of the Unix sections into smaller sections
+('Unix_and_Perl_course'). Broke several of the Unix sections into smaller sections
 
 2.05 - 7/17/09 - Some minor typos fixed
 
@@ -4099,7 +4034,7 @@ print examples.
 escaping via backslash character. Fixed E.coli project example. Mentioned how to spot unsaved files in Mac editors.
 Moved tables inline.
 
-2.02 - 7/14/09 - â€˜use warningsâ€™ reinstated to all scripts. Table of contents added. Hash bang line also included in all
+2.02 - 7/14/09 - 'use warnings' reinstated to all scripts. Table of contents added. Hash bang line also included in all
 scripts. A few new sections added to Unix part of course, including a table of commonly used Unix commands. Lots of
 small of formatting changes to stop sections splitting over pages where possible.
 
