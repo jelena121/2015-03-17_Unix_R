@@ -146,7 +146,7 @@ You should now see something that looks like the following (any text that appear
 
 Before we go any further, you should note that you can:
 
-* make the text larger/smaller (hold down 'command' and either '+' or 'â€“') 
+* make the text larger/smaller (hold down 'command' and either '+' or '-') 
 * resize the window (this will often be necessary) 
 * have multiple terminal windows on screen (see the 'Shell' menu) 
 * have multiple tabs open within each window (again see the 'Shell' menu)
